@@ -1,0 +1,2 @@
+C:\Program Files\EVT\eSDK\Examples\EVT_ImageFormatControl\x64\Debug\EVT_ImageFormatControl.exe
+C:\Program Files\EVT\eSDK\Examples\EVT_ImageFormatControl\x64\Debug\EVT_ImageFormatControl.pdb

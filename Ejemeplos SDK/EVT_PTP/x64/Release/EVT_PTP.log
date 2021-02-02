@@ -1,0 +1,7 @@
+﻿  stdafx.cpp
+  EVT_PTP.cpp
+  Generando código
+  Previous IPDB not found, fall back to full compilation.
+  All 5 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Generación de código finalizada
+  EVT_PTP.vcxproj -> C:\Program Files\EVT\eSDK\Examples\EVT_PTP\x64\Release\EVT_PTP.exe

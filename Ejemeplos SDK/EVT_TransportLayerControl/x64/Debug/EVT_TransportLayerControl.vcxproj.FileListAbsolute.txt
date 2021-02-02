@@ -1,0 +1,2 @@
+C:\Program Files\EVT\eSDK\Examples\EVT_TransportLayerControl\x64\Debug\EVT_TransportLayerControl.exe
+C:\Program Files\EVT\eSDK\Examples\EVT_TransportLayerControl\x64\Debug\EVT_TransportLayerControl.pdb

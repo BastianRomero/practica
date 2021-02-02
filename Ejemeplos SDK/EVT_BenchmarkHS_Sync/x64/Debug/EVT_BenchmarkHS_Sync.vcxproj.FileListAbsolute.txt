@@ -1,0 +1,2 @@
+C:\Program Files\EVT\eSDK\Examples\EVT_BenchmarkHS_Sync\x64\Debug\EVT_BenchmarkHS_Sync.exe
+C:\Program Files\EVT\eSDK\Examples\EVT_BenchmarkHS_Sync\x64\Debug\EVT_BenchmarkHS_Sync.pdb

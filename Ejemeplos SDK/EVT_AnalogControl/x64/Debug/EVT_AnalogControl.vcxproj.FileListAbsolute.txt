@@ -1,0 +1,2 @@
+C:\Program Files\EVT\eSDK\Examples\EVT_AnalogControl\x64\Debug\EVT_AnalogControl.exe
+C:\Program Files\EVT\eSDK\Examples\EVT_AnalogControl\x64\Debug\EVT_AnalogControl.pdb

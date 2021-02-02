@@ -1,0 +1,2 @@
+C:\Program Files\EVT\eSDK\Examples\EVT_BenchmarkHSAVI\x64\Debug\EVT_BenchmarkHSAVI.exe
+C:\Program Files\EVT\eSDK\Examples\EVT_BenchmarkHSAVI\x64\Debug\EVT_BenchmarkHSAVI.pdb
