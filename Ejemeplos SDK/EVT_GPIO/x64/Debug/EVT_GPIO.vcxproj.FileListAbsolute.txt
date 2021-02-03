@@ -1,0 +1,2 @@
+B:\practica\Ejemeplos SDK\EVT_GPIO\x64\Debug\EVT_GPIO.exe
+B:\practica\Ejemeplos SDK\EVT_GPIO\x64\Debug\EVT_GPIO.pdb

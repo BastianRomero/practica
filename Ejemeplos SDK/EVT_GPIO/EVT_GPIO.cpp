@@ -127,19 +127,23 @@ int main(int argc, char* argv[])
   printf("Resolution: \t\t%d x %d\n", width_max, height_max);
 
   //Test GPOs by toggling polarity in manual mode.
-  for(count=0;count<4;count++)
+  for(count=0;count<6;count++)
   {
 
 #ifdef _MSC_VER
     sprintf_s(gpo_str, "GPO_%d_Mode", count);
+    //ej1:sprintf_s(gpo_str, "GPO_%d_Polarity", count);
 #else
     sprintf(gpo_str, "GPO_%d_Mode", count);
 #endif
 
     EVT_CameraSetEnumParam(&camera, gpo_str, "GPO");
+    //ej1:EVT_CameraSetEnumParam(&camera, gpo_str, "positive or negative");
+
+    // GPO es un modo de la salida de los pines que pueden enviar señales.
   }
 
-  for(count=0;count<4;count++)
+  for(count=0;count<6;count++)
   {
     printf("Toggling GPO %d\t\t", count);
 
@@ -197,7 +201,9 @@ int main(int argc, char* argv[])
     printf("Grabbing Frames...\n");
 
     EVT_CameraSetEnumParam(&camera, "TriggerMode", "On");
+    //pagina 9 attribute_manual
     EVT_CameraSetEnumParam(&camera, "TriggerSource", "Hardware");
+    //pagina 10 attribute_manual
 
     //Set the GPI hardware triggering mode to use GPI_4 and select rising edge to start exp and falling edge 
     //to end exposure. Error check omitted for clarity.
@@ -331,6 +337,7 @@ int main(int argc, char* argv[])
   }
 
 
+// Se repite con GPI5
   printf("Enter <h> if external hardware trigger available on GPI5 or loopback GPO_1 to GPI_5. <s> to skip test. Then press enter: ");
   user_char = getchar();
 
