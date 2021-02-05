@@ -1,0 +1,3 @@
+﻿  clock.cpp
+C:\Users\Bastián Romero\Documents\repos\practica\Ejemplos cuda\common\inc\nvrtc_helper.h(58,8): warning C4101: 'deviceName': variable local sin referencia
+  clock_nvrtc_vs2019.vcxproj -> C:\Users\Bastián Romero\Documents\repos\practica\Ejemplos cuda\bin\win64\Debug\clock_nvrtc.exe

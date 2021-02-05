@@ -1,3 +1,4 @@
 ﻿  stdafx.cpp
   EVT_BenchmarkHS_Sync.cpp
-  EVT_BenchmarkHS_Sync.vcxproj -> C:\Program Files\EVT\eSDK\Examples\EVT_BenchmarkHS_Sync\x64\Debug\EVT_BenchmarkHS_Sync.exe
+  LINK : no se encontró C:\Users\Bastián Romero\Documents\repos\practica\Ejemeplos SDK\EVT_BenchmarkHS_Sync\x64\Debug\EVT_BenchmarkHS_Sync.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
+  EVT_BenchmarkHS_Sync.vcxproj -> C:\Users\Bastián Romero\Documents\repos\practica\Ejemeplos SDK\EVT_BenchmarkHS_Sync\x64\Debug\EVT_BenchmarkHS_Sync.exe
