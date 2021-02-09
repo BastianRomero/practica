@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  Compiling CUDA source file cdpSimplePrint.cu...
   
   B:\practica\Ejemplos cuda\0_Simple\cdpSimplePrint>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\bin\nvcc.exe" -gencode=arch=compute_35,code=\"sm_35,compute_35\" -gencode=arch=compute_37,code=\"sm_37,compute_37\" -gencode=arch=compute_50,code=\"sm_50,compute_50\" -gencode=arch=compute_52,code=\"sm_52,compute_52\" -gencode=arch=compute_60,code=\"sm_60,compute_60\" -gencode=arch=compute_61,code=\"sm_61,compute_61\" -gencode=arch=compute_70,code=\"sm_70,compute_70\" -gencode=arch=compute_75,code=\"sm_75,compute_75\" -gencode=arch=compute_80,code=\"sm_80,compute_80\" -gencode=arch=compute_86,code=\"sm_86,compute_86\" --use-local-env -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\bin\HostX86\x64" -x cu -rdc=true  -I./ -I../../common/inc -I./ -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\/include" -I../../common/inc -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\include"  -G   --keep-dir x64\Debug  -maxrregcount=0  --machine 64 --compile -cudart static --threads 0 -g  -DWIN32 -DWIN32 -D_MBCS -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Fdx64/Debug/vc142.pdb /FS /Zi /RTC1 /MTd " -o x64/Debug/cdpSimplePrint.cu.obj "B:\practica\Ejemplos cuda\0_Simple\cdpSimplePrint\cdpSimplePrint.cu" 
@@ -26,3 +27,6 @@ CUDALINK : nvcc warning : The 'compute_35', 'compute_37', 'compute_50', 'sm_35',
   LINK : no se encontró ..\..\bin\win64\Debug\\cdpSimplePrint.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
      Creando biblioteca ../../bin/win64/Debug/cdpSimplePrint.lib y objeto ../../bin/win64/Debug/cdpSimplePrint.exp
   cdpSimplePrint_vs2019.vcxproj -> B:\practica\Ejemplos cuda\bin\win64\Debug\cdpSimplePrint.exe
+=======
+﻿  cdpSimplePrint_vs2019.vcxproj -> C:\Users\Bastián Romero\Documents\repos\practica\Ejemplos cuda\bin\win64\Debug\cdpSimplePrint.exe
+>>>>>>> 8d3c3b3af4e184d8bd5b82f89a9a261ecda2bc66

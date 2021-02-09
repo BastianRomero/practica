@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
       <FullPath>B:\practica\Ejemplos cuda\bin\win64\Debug\deviceQuery.exe</FullPath>
+=======
+      <FullPath>C:\Users\Bastián Romero\Documents\repos\practica\Ejemplos cuda\bin\win64\Debug\deviceQuery.exe</FullPath>
+>>>>>>> 8d3c3b3af4e184d8bd5b82f89a9a261ecda2bc66
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

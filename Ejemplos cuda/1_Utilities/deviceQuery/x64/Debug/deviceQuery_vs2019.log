@@ -1,3 +1,7 @@
 ﻿  deviceQuery.cpp
      Creando biblioteca ../../bin/win64/Debug/deviceQuery.lib y objeto ../../bin/win64/Debug/deviceQuery.exp
+<<<<<<< HEAD
   deviceQuery_vs2019.vcxproj -> B:\practica\Ejemplos cuda\bin\win64\Debug\deviceQuery.exe
+=======
+  deviceQuery_vs2019.vcxproj -> C:\Users\Bastián Romero\Documents\repos\practica\Ejemplos cuda\bin\win64\Debug\deviceQuery.exe
+>>>>>>> 8d3c3b3af4e184d8bd5b82f89a9a261ecda2bc66
