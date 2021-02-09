@@ -35,7 +35,7 @@ using namespace Emergent;
 
 #define SUCCESS 0
 //#define XML_FILE   "C:\\xml\\Emergent_HS-20000-C_1_0.xml"
-#define MAX_FRAMES 50
+#define MAX_FRAMES 150
 
 #define POLARITY_NEG 1
 #define POLARITY_POS 0

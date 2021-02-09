@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\ProgramData\NVIDIA Corporation\CUDA Samples\v11.2\bin\win64\Debug\cdpSimplePrint.exe</FullPath>
+      <FullPath>B:\practica\Ejemplos cuda\bin\win64\Debug\cdpSimplePrint.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
