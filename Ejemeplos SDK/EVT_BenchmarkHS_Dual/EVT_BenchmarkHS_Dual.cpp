@@ -29,6 +29,8 @@
 #include <emergentframe.h>
 #include <EvtParamAttribute.h>
 #include <gigevisiondeviceinfo.h>
+#include <EmergentFrameSave.h>
+
 
 using namespace std;
 using namespace Emergent;
@@ -41,7 +43,7 @@ using namespace Emergent;
 #define MAX_FRAMES 1000
 #define FRAMES_BUFFERS 30
 
-#define CAMERAS 2
+#define CAMERAS 3
 #define MAX_CAMERAS 10
 
 void configure_defaults(CEmergentCamera* camera);
@@ -51,13 +53,15 @@ void camera_thread(void* arg);
 
 int main(int argc, char *argv[])
 {
+
   CEmergentCamera camera[CAMERAS];
   int ReturnVal = SUCCESS;
   unsigned int frame_rate_max, frame_rate_min, frame_rate_inc, frame_rate;
   unsigned int height_max, width_max;
   
-  struct GigEVisionDeviceInfo deviceInfo[MAX_CAMERAS];
-  unsigned int count, camera_index, numCameras = 0, evt_index[CAMERAS], cam;
+  GigEVisionDeviceInfo deviceInfo[MAX_CAMERAS];
+  unsigned int count, camera_index, numCameras = 0, evt_index[CAMERAS];
+  unsigned int cam = 0;
 
   printf("------------------------------------"); printf("\n");
   printf("BenchmarkHS_Dual : Example program  "); printf("\n");
@@ -103,13 +107,13 @@ int main(int argc, char *argv[])
     }
   }  
 
-  for(cam=0;cam<2;cam++)
+  for(cam=0;cam<CAMERAS;cam++)
   {
     //Open the camera. Example usage. Camera found needs to match XML.
   #ifdef XML_FILE
     ReturnVal = EVT_CameraOpen(&camera, &deviceInfo[camera_index], XML_FILE);
   #else
-    ReturnVal = EVT_CameraOpen(&camera[cam], &deviceInfo[evt_index[cam]]);      
+   ReturnVal = EVT_CameraOpen(&camera[cam], &deviceInfo[cam]);      
   #endif
     if(ReturnVal != SUCCESS)
     {
@@ -118,17 +122,19 @@ int main(int argc, char *argv[])
     }
     else
     {
-      printf("Open Camera: \t\tCamera Opened: %s\n", deviceInfo[evt_index[cam]].modelName);
+      printf("Open Camera: \t\tCamera Opened: %s\n", deviceInfo[cam].modelName);
     }
   }
 
-  for(cam=0;cam<2;cam++)
+
+
+  for(cam=0;cam<CAMERAS;cam++)
   {
     //To avoid conflict with settings in other examples.
     configure_defaults(&camera[cam]);
   }
 
-  for(cam=0;cam<2;cam++)
+  for(cam=0;cam<CAMERAS;cam++)
   {
     printf("Camera %d:\n", cam);
     //Get resolution.
@@ -150,19 +156,19 @@ int main(int argc, char *argv[])
   }
 
 #ifdef _MSC_VER
-  HANDLE camera_thread_handle[2];
+  HANDLE camera_thread_handle[4];
   //Open one grabbing/processing thread for each camera.
-  for(cam=0;cam<2;cam++)
+  for(cam=0;cam<CAMERAS;cam++)
   {
     camera_thread_handle[cam] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)&camera_thread, (void*)&camera[cam], 0, NULL);
   }
   
   //Now wait for threads to complete signifying that all frames received.
-  WaitForMultipleObjects(2, camera_thread_handle, TRUE, -1);
+  WaitForMultipleObjects(CAMERAS, camera_thread_handle, TRUE, -1);
 #else
-  pthread_t camera_thread_handle[2];
+  pthread_t camera_thread_handle[4];
   //Open one grabbing/processing thread for each camera.
-  for(cam=0;cam<2;cam++)
+  for(cam=0;cam<4;cam++)
   {
 	if(pthread_create(&camera_thread_handle[cam], NULL, (void* (*)(void*))&camera_thread, (void*)&camera[cam]) != 0)
 	{
@@ -171,7 +177,7 @@ int main(int argc, char *argv[])
 	}
   }
   //Now wait for threads to complete signifying that all frames received.  
-    for(cam=0;cam<2;cam++)
+    for(cam=0;cam<4;cam++)
     {
         if(pthread_join(camera_thread_handle[cam], NULL) != 0)
 	{
@@ -180,13 +186,13 @@ int main(int argc, char *argv[])
     }
 #endif
 
-  for(cam=0;cam<2;cam++)
+  for(cam=0;cam<CAMERAS;cam++)
   {
     //To avoid conflict with settings in other examples.
     configure_defaults(&camera[cam]);
   }
 
-  for(cam=0;cam<2;cam++)
+  for(cam=0;cam<CAMERAS;cam++)
   {
 	  EVT_CameraClose(&camera[cam]);
     printf("\nClose Camera: \t\tCamera Closed");
@@ -215,8 +221,8 @@ void camera_thread(void* arg)
 	for(int frame_count=0;frame_count<FRAMES_BUFFERS;frame_count++)
 	{
     //Three params used for memory allocation. Worst case covers all models so no recompilation required.
-    evtFrame[frame_count].size_x = 4096;
-    evtFrame[frame_count].size_y = 3072;
+    evtFrame[frame_count].size_x = 808;
+    evtFrame[frame_count].size_y = 616;
     evtFrame[frame_count].pixel_type = GVSP_PIX_MONO8;  //Covers color model using BayerGB8 also.
     ReturnVal = EVT_AllocateFrameBuffer(camera, &evtFrame[frame_count], EVT_FRAME_BUFFER_ZERO_COPY);
     if(ReturnVal) printf("EVT_AllocateFrameBuffer Error!\n");
@@ -307,8 +313,17 @@ void camera_thread(void* arg)
 		EVT_ReleaseFrameBuffer(camera, &evtFrame[frame_count]);
 	}
 
+  /*  char filename[100];
+
+    sprintf_s(filename, "D:/files/camera1_%d.tif", frames_recd);
+    EVT_FrameSave(evtFrame, filename, EVT_FILETYPE_TIF, EVT_ALIGN_NONE);
+    EVT_CameraQueueFrame(camera, evtFrame);  //Now re-queue.
+*/
 	//Host side tear down for stream.
 	EVT_CameraCloseStream(camera);
+
+ 
+
 
   //Report stats
   printf("\n");

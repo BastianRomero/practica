@@ -6,7 +6,7 @@ void setup() {
 pinMode(7,OUTPUT);
 pinMode(8,INPUT);
 pinMode(9,INPUT);
-Serial.begin(9600);
+Serial.begin(38400);
 }
 
 void loop() {
@@ -21,11 +21,12 @@ if (OFF == LOW){
 
 if(ON == LOW || boton == 1){
   digitalWrite(7,HIGH);
-  delay(5);
+  delayMicroseconds(100);
   digitalWrite(7,LOW);
-  delay(5);
-  Serial.println(ON);
+  delayMicroseconds(100);
   boton = 1;
+  Serial.println(ON);
+
 }
 
 }

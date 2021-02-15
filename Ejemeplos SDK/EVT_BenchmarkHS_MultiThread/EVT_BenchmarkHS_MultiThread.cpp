@@ -42,7 +42,7 @@ using namespace Emergent;
 
 #define SUCCESS 0
 //#define XML_FILE   "C:\\xml\\Emergent_HS-2000-M_1_0.xml"
-#define MAX_FRAMES 1000
+#define MAX_FRAMES 800
 #define FRAMES_BUFFERS 30
 
 #define MAX_CAMERAS 10
