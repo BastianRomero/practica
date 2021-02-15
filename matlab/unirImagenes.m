@@ -1,11 +1,13 @@
 clearvars;
 
 tic
-
-directorioCarga = dir('files2');
-directorioNuevo = 'nombrePtif';
+origen = 'files1';
+directorioCarga = dir(origen);
+directorioNuevo = 'maxfps';
+formatoOrigen = 'tif';
 formato = '.jpg';
 frames = 15;
+
 if (exist(directorioNuevo,'dir') == 7)
     fprintf("El directorio ya existe \n")
 else
@@ -15,9 +17,10 @@ end
 
 %% Función de conversion 
 fprintf("Convirtiendo imagenes \n")
-for numero = 1:length(directorioCarga)-2
-   imagen =  imread(['files2/camera2_' num2str(numero)],'tif');
-   
+for numero = 3:length(directorioCarga)
+    
+   directorio = [origen '/' directorioCarga(numero).name];
+   imagen =  imread(directorio);
    if(numero/10 < 1)
        imwrite(imagen,[directorioNuevo '/00' mat2str(numero) formato]);   
    elseif (numero/10 >= 1 && numero/10 < 10)
