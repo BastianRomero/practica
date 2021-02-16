@@ -1,10 +1,10 @@
 clearvars;
 
 tic
-origen = 'files1';
+origen = '1000fps_1';
 directorioCarga = dir(origen);
-directorioNuevo = 'maxfps';
-formatoOrigen = 'tif';
+directorioNuevo = '1000fps';
+formatoOrigen = '.tif';
 formato = '.jpg';
 frames = 15;
 
@@ -17,9 +17,10 @@ end
 
 %% Función de conversion 
 fprintf("Convirtiendo imagenes \n")
-for numero = 3:length(directorioCarga)
+for numero = 1:length(directorioCarga)-3
     
-   directorio = [origen '/' directorioCarga(numero).name];
+   %directorio = [origen '/' directorioCarga(numero).name];
+   directorio = [origen '/camera1_' num2str(numero) formatoOrigen];
    imagen =  imread(directorio);
    if(numero/10 < 1)
        imwrite(imagen,[directorioNuevo '/00' mat2str(numero) formato]);   
