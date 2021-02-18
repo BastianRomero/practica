@@ -1,0 +1,7 @@
+1000fps1 -- > con trigger cambio exposicion
+1000fps2 -- > con trigger cambio FORMATO
+1000fps3 -- > con trigger AlIGN LEFT
+1000fps4 -- > sin trigger
+1594fps1 -- > sin trigger
+1000fps5 -- > sin trigger, lente 150mm
+60fps1 -- > sin trigger, lente 150mm 

@@ -2,7 +2,7 @@ clearvars;
 
 tic
 
-directorioCarga = dir('files2');
+directorioCarga = dir('1000fps_1');
 directorioNuevo = 'nombrePtif';
 formato = '.jpg';
 frames = 15;
