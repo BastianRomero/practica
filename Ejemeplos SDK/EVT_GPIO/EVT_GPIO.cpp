@@ -35,7 +35,7 @@ using namespace Emergent;
 
 #define SUCCESS 0
 //#define XML_FILE   "C:\\xml\\Emergent_HS-20000-C_1_0.xml"
-#define MAX_FRAMES 150
+#define MAX_FRAMES 5000
 
 #define POLARITY_NEG 1
 #define POLARITY_POS 0
@@ -43,7 +43,7 @@ using namespace Emergent;
 #define TRUE  1
 #define FALSE 0
 
-#define EXPOSURE_VAL 1000 //us
+#define EXPOSURE_VAL 500 //us
 
 #define MAX_CAMERAS 10
 
@@ -143,7 +143,7 @@ int main(int argc, char* argv[])
     // GPO es un modo de la salida de los pines que pueden enviar señales.
   }
 
-  for(count=0;count<6;count++)
+  /*for(count=0;count<6;count++)
   {
     printf("Toggling GPO %d\t\t", count);
 
@@ -170,7 +170,7 @@ int main(int argc, char* argv[])
     }
     printf("\n");
   }
-
+  */
 	//Prepare host side for streaming.
 	ReturnVal = EVT_CameraOpenStream(&camera);
   if(ReturnVal != SUCCESS)
@@ -200,6 +200,18 @@ int main(int argc, char* argv[])
     printf("Trigger Mode: \t\tContinuous, HardwareTrigger, GPI4, %d Frames\n", MAX_FRAMES);
     printf("Grabbing Frames...\n");
 
+   //Set exposure. Error check omitted for clarity.
+    EVT_CameraGetUInt32ParamMax(&camera, "FrameRate", &param_val_max);
+    printf("Exposure Max: \t\t%d\n", param_val_max);
+    EVT_CameraGetUInt32ParamMin(&camera, "FrameRate", &param_val_min);
+    printf("Exposure Min: \t\t%d\n", param_val_min);
+    if (EXPOSURE_VAL >= param_val_min && EXPOSURE_VAL <= param_val_max)
+    {
+        EVT_CameraSetUInt32Param(&camera, "FrameRate", EXPOSURE_VAL);
+        printf("Exposure Set: \t\t%d\n", EXPOSURE_VAL);
+    }
+   // EVT_CameraSetEnumParam(&camera, "UartBaud", "B_38400");
+    
     EVT_CameraSetEnumParam(&camera, "TriggerMode", "On");
     //pagina 9 attribute_manual
     EVT_CameraSetEnumParam(&camera, "TriggerSource", "Hardware");
@@ -208,17 +220,16 @@ int main(int argc, char* argv[])
     //Set the GPI hardware triggering mode to use GPI_4 and select rising edge to start exp and falling edge 
     //to end exposure. Error check omitted for clarity.
     EVT_CameraSetEnumParam(&camera, "GPI_Start_Exp_Mode",   "GPI_4");
-    EVT_CameraSetEnumParam(&camera, "GPI_Start_Exp_Event",  "Rising_Edge");
+    EVT_CameraSetEnumParam(&camera, "GPI_Start_Frame_Event",  "Rising_Edge");
     EVT_CameraSetEnumParam(&camera, "GPI_End_Exp_Mode",     "GPI_4");
     EVT_CameraSetEnumParam(&camera, "GPI_End_Exp_Event",    "Falling_Edge");
 
-    EVT_CameraSetEnumParam(&camera, "GPO_0_Mode", "Test_Generator");
-    EVT_CameraSetUInt32Param(&camera, "TG_Frame_Time", 33333); //30fps
-    EVT_CameraSetUInt32Param(&camera, "TG_High_Time", 1000);   //1000us
+   EVT_CameraSetUInt32Param(&camera, "TG_Frame_Time", 1000); //30fps
+    EVT_CameraSetUInt32Param(&camera, "TG_High_Time", 250);   //1000us
 
-    EVT_CameraSetUInt32Param(&camera, "Trigger_Delay", 1000);   //1000us
-
-	  //Grab MAX_FRAMES frames and just save images to .bmp file.
+    EVT_CameraSetUInt32Param(&camera, "Trigger_Delay", 250);   //1000us
+ 
+                                                               //Grab MAX_FRAMES frames and just save images to .bmp file.
     unsigned int frames_recd = 0;
 	  for(int frame_count=0;frame_count<MAX_FRAMES;frame_count++)
 	  {
@@ -250,12 +261,12 @@ int main(int argc, char* argv[])
 
       EVT_CameraQueueFrame(&camera, &evtFrame);  //Now re-queue.
 
-      printf(".");
+     // printf(".");
 #ifndef _MSC_VER 
       fflush(stdout);
 #endif
 	  }
-
+      printf("SUCCESS");
     printf("\nImages Captured: \t%d\n", frames_recd);
   }
   else
@@ -290,7 +301,7 @@ int main(int argc, char* argv[])
     //All other settings same as previous GPI4 test.
     EVT_CameraSetEnumParam(&camera, "GPI_End_Exp_Mode",     "Internal");
 
-    EVT_CameraSetUInt32Param(&camera, "Trigger_Delay", 1000);   //1000us
+    EVT_CameraSetUInt32Param(&camera, "Trigger_Delay", 500);   //1000us
 
 	  //Grab MAX_FRAMES frames and just save images to .bmp file.
     unsigned int frames_recd = 0;
@@ -323,19 +334,19 @@ int main(int argc, char* argv[])
 
       EVT_CameraQueueFrame(&camera, &evtFrame);  //Now re-queue.
 
-      printf(".");
+      //printf(".");
 #ifndef _MSC_VER 
       fflush(stdout);
 #endif
 	  }
-
+    printf("SUCCESS \n");
     printf("\nImages Captured: \t%d\n", frames_recd);
   }
   else
   {
     printf("External hardware trigger required on GPI4 to run test.\n");
   }
-
+  /*
 
 // Se repite con GPI5
   printf("Enter <h> if external hardware trigger available on GPI5 or loopback GPO_1 to GPI_5. <s> to skip test. Then press enter: ");
@@ -485,7 +496,7 @@ int main(int argc, char* argv[])
   else
   {
     printf("External hardware loopback required to run Uart test.\n");
-  }
+  }*/
 
 
 

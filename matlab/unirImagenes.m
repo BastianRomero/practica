@@ -1,11 +1,19 @@
 clearvars;
 
 tic
+<<<<<<< HEAD
 
 directorioCarga = dir('1000fps_1');
 directorioNuevo = 'nombrePtif';
+=======
+origen = '1000fps_1';
+directorioCarga = dir(origen);
+directorioNuevo = '1000fps';
+formatoOrigen = '.tif';
+>>>>>>> 6dbf9123ad294321f1e50aa4f4893300d34ec1f7
 formato = '.jpg';
 frames = 15;
+
 if (exist(directorioNuevo,'dir') == 7)
     fprintf("El directorio ya existe \n")
 else
@@ -15,9 +23,11 @@ end
 
 %% Función de conversion 
 fprintf("Convirtiendo imagenes \n")
-for numero = 1:length(directorioCarga)-2
-   imagen =  imread(['files2/camera2_' num2str(numero)],'tif');
-   
+for numero = 1:length(directorioCarga)-3
+    
+   %directorio = [origen '/' directorioCarga(numero).name];
+   directorio = [origen '/camera1_' num2str(numero) formatoOrigen];
+   imagen =  imread(directorio);
    if(numero/10 < 1)
        imwrite(imagen,[directorioNuevo '/00' mat2str(numero) formato]);   
    elseif (numero/10 >= 1 && numero/10 < 10)
