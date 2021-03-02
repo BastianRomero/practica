@@ -1,0 +1,1 @@
+1000fps no trigger res 440 x 576 con buffer
